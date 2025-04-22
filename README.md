@@ -4,9 +4,9 @@ This document outlines a series of vulnerabilities discovered in a web applicati
 
 ---
 
-## ====================================================
+
 ## Vulnerability 1: SQL Injection
-## ====================================================
+
 
 **What I found and where:**
 
@@ -25,9 +25,9 @@ The fetch function in the GenericModel class was vulnerable to SQL injection bec
 
 ---
 
-## ====================================================
+
 ## Vulnerability 2: Information Exposure
-## ====================================================
+
 
 **What I found and where:**
 
@@ -40,9 +40,9 @@ Backup and temp files (.bak, .swp, .cfg, etc.) were accessible on the server and
 
 ---
 
-## ====================================================
+
 ## Vulnerability 3: XSS
-## ====================================================
+
 
 **What I found and where:**
 
@@ -54,9 +54,9 @@ XSS was found in 9 different modules including Search, Contact, Blog Post, Categ
 
 ---
 
-## ====================================================
+
 ## Vulnerability 4: Insecure Upload
-## ====================================================
+
 
 **What I found and where:**
 
@@ -74,9 +74,9 @@ XSS was found in 9 different modules including Search, Contact, Blog Post, Categ
 
 ---
 
-## ====================================================
+
 ## Vulnerability 6: Authorisation Bypass
-## ====================================================
+
 
 **What I found and where:**
 
@@ -92,9 +92,9 @@ XSS was found in 9 different modules including Search, Contact, Blog Post, Categ
 
 ---
 
-## ====================================================
+
 ## Vulnerability 7: Internal Information
-## ====================================================
+
 
 **What I found and where:**
 
@@ -106,9 +106,9 @@ Error views (`error.htm`, `errorer.htm`) exposed stack traces and file paths.
 
 ---
 
-## ====================================================
+
 ## Vulnerability 8: Parameter Manipulation
-## ====================================================
+
 
 **What I found and where:**
 
@@ -120,9 +120,9 @@ Error views (`error.htm`, `errorer.htm`) exposed stack traces and file paths.
 
 ---
 
-## ====================================================
+
 ## Vulnerability 9: Application Logic
-## ====================================================
+
 
 **What I found and where:**
 
@@ -136,9 +136,9 @@ Error views (`error.htm`, `errorer.htm`) exposed stack traces and file paths.
 
 ---
 
-## ====================================================
+
 ## Vulnerability 10: Out of Date Software
-## ====================================================
+
 
 **What I found and where:**
 
@@ -151,9 +151,9 @@ Used outdated versions of FatFree (v3.8.2) and CKEditor (v4.20.1)
 
 ---
 
-## ====================================================
+
 ## Vulnerability 11: File Inclusion
-## ====================================================
+
 
 **What I found and where:**
 
@@ -165,9 +165,9 @@ Used outdated versions of FatFree (v3.8.2) and CKEditor (v4.20.1)
 
 ---
 
-## ====================================================
+
 ## Vulnerability 12: Insecure Cookies and Sessions
-## ====================================================
+
 
 **What I found and where:**
 
@@ -184,9 +184,9 @@ Used outdated versions of FatFree (v3.8.2) and CKEditor (v4.20.1)
 
 ---
 
-## ====================================================
+
 ## Vulnerability 13: Open Redirects
-## ====================================================
+
 
 **What I found and where:**
 
@@ -200,9 +200,9 @@ Used outdated versions of FatFree (v3.8.2) and CKEditor (v4.20.1)
 
 ---
 
-## ====================================================
+
 ## Vulnerability 15: Anything Else
-## ====================================================
+
 
 **What I found and where:**
 
