@@ -1,0 +1,56 @@
+<div class="well" style="width: 60%; margin: auto; padding: auto">
+    <h2>Register</h2>
+    <p>Please provide a username, password, and email address to register</p>
+
+    <?php
+        require_once 'vendor/autoload.php';
+
+        // Configure HTMLPurifier
+        $config = \HTMLPurifier_Config::createDefault();
+        $config->set('HTML.Allowed', 'b,strong,i,em,a[href|target],p,ul,ol,li,img[src|alt|width|height]');
+        $config->set('URI.DisableExternalResources', true);
+        $config->set('URI.DisableResources', true);
+        $purifier = new \HTMLPurifier($config);
+
+        $form = new Form(); 
+        echo $form->start();
+
+        // Add sanitized form fields
+        echo $form->add('username', array(
+            'label' => 'Username',
+            'value' => $purifier->purify($userData['username'] ?? '')
+        ));
+
+        echo $form->add('displayname', array(
+            'label' => 'Display Name',
+            'value' => $purifier->purify($userData['displayname'] ?? '')
+        ));
+
+        echo $form->add('email', array(
+            'label' => 'Email',
+            'value' => $purifier->purify($userData['email'] ?? '')
+        ));
+
+        echo '<hr/>';
+
+        echo $form->add('password', array(
+            'type' => 'password',
+            'value' => ''
+        ));
+
+        echo $form->add('password2', array(
+            'type' => 'password',
+            'value' => '',
+            'label' => 'Confirm Password'
+        ));
+
+        echo '<hr/>';
+        echo $form->add('Register', array('type' => 'submit'));
+        echo $form->end();
+    ?>
+
+    <hr/>
+    <p>Already have an account? Just 
+        <a href="<?= $purifier->purify($site['base'] ?? '') ?>/user/login">Login</a>
+    </p>
+</div>

@@ -1,0 +1,29 @@
+<h2>Contact Us</h2>
+<p>You can get into contact with us by filling in our form below</p>
+
+<div class="row-fluid">
+    <div class="col-md-6 col-md-offset-3">
+        <?php
+        // Get the 'from' address and sanitize it
+        $email = '';
+        if (isset($user['email'])) {
+            $email = htmlspecialchars(filter_var($user['email'], FILTER_SANITIZE_EMAIL), ENT_QUOTES, 'UTF-8');
+        }
+
+        // Get the 'to' address and sanitize it
+        $to = htmlspecialchars(filter_var($site['email'], FILTER_SANITIZE_EMAIL), ENT_QUOTES, 'UTF-8');
+
+        $form = new Form();
+        echo $form->start();
+
+        // Sanitize and render the input fields
+        echo $form->add('email', array('type' => 'text', 'value' => $email, 'readonly' => 'readonly'));
+        echo $form->add('to', array('type' => 'hidden', 'value' => $to));
+        echo $form->add('subject', array('type' => 'text'));
+        echo $form->add('message', array('type' => 'textarea'));
+        echo $form->add('Send', array('type' => 'submit'));
+
+        echo $form->end();
+        ?>
+    </div>
+</div>

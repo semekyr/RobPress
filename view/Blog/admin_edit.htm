@@ -1,0 +1,64 @@
+
+ <h2>Edit Blog Post</h2>
+
+ <?php
+	 $form = new Form(); 
+	 echo $form->start();
+ 
+	 // Sanitize categories before rendering
+	 require_once 'vendor/autoload.php';
+	 $config = \HTMLPurifier_Config::createDefault();
+	 $config->set('HTML.Allowed', ''); // Disallow all HTML tags
+	 $config->set('Core.EscapeInvalidTags', true);
+	 $purifier = new \HTMLPurifier($config);
+ 
+	 // Sanitize categories using HTMLPurifier
+	 $sanitizedCategories = array_map(function ($category) use ($purifier) {
+		 return $purifier->purify($category);
+	 }, $categories ?? []);
+ ?>
+ <div class="row">
+	 <div class="col-md-8">
+		 <?php
+		 // Sanitize and add form fields
+		 echo $form->add('title', array(
+			 'placeholder' => 'Enter Title',
+			 'value' => htmlspecialchars($post['title'] ?? '', ENT_QUOTES, 'UTF-8') // Escape dynamic value
+		 ));
+ 
+		 echo $form->add('summary', array(
+			 'type' => 'textarea',
+			 'value' => htmlspecialchars($post['summary'] ?? '', ENT_QUOTES, 'UTF-8') // Escape dynamic value
+		 ));
+ 
+		 echo $form->add('content', array(
+			 'type' => 'wysiwyg',
+			 'value' => htmlspecialchars($post['content'] ?? '', ENT_QUOTES, 'UTF-8') // Escape dynamic value
+		 ));
+		 ?>
+	 </div>
+	 <div class="col-md-4">
+		 <?php
+		 echo $form->add('published', array(
+			 'type' => 'datetime',
+			 'default' => htmlspecialchars($post['published'] ?? date('Y-m-d H:i'), ENT_QUOTES, 'UTF-8'), // Escape dynamic value
+			 'label' => 'Publish Date'
+		 ));
+ 
+		 echo $form->add('categories', array(
+			 'type' => 'checkboxes',
+			 'label' => 'Categories',
+			 'items' => $sanitizedCategories // Use sanitized categories
+		 ));
+ 
+		 echo '<hr/>';
+		 echo $form->add('Save Draft', array('type' => 'submit', 'class' => 'btn-success'));
+		 echo ' ';
+		 echo $form->add('Publish', array('type' => 'submit'));
+		 ?>	
+	 </div>
+ </div>
+ <?php	
+ echo $form->end();
+ ?>
+ 

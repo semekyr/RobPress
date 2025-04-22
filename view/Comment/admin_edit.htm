@@ -1,0 +1,10 @@
+<h2>Edit Comment</h2>
+
+<?php
+	$form = new Form();
+	echo $form->start();
+	echo $form->add('subject', ['value' => h($comment->subject)]);
+	echo $form->add('message', ['type' => 'wysiwyg', 'value' => h($comment->message)]);
+	echo $form->add('Save',array('type' => 'submit'));
+	echo $form->end();
+?>

@@ -1,0 +1,46 @@
+
+<h2>Static Pages</h2>
+ <p>Static pages enable you to have non-blog related content on your website. These pages appear automatically in your navigation bar.</p>
+ <hr/>
+ 
+ <div class="row-fluid">
+ <div class="col-md-4">
+ <h4>Add New Page</h4>
+ 
+ <?php
+	 $form = new Form();
+	 echo $form->start(array('action' => htmlspecialchars($site['base'], ENT_QUOTES, 'UTF-8') . '/admin/page/add'));
+	 echo $form->add('title', array(
+		 'placeholder' => 'Enter Title'
+	 ));
+	 echo $form->add('Add Page', array('type' => 'submit'));
+	 echo $form->end();
+ ?>
+ 
+ </div>
+ <div class="col-md-8">
+ <h4>All Pages</h4>
+ <table class="table table-striped table-bordered">
+ <thead>
+ <tr>
+ <th>Page Name</th>
+ </tr>
+ </thead>
+ <tbody>
+ <?php foreach ($pages as $pagetitle => $page): ?>
+ <tr>
+ <td style="font-weight: bold">
+	 <?php 
+		 $pagename = htmlspecialchars(str_ireplace(".html", "", $page), ENT_QUOTES, 'UTF-8'); 
+		 $pagetitleSafe = htmlspecialchars($pagetitle, ENT_QUOTES, 'UTF-8');
+	 ?>
+	 <a href="<?= htmlspecialchars($site['base'], ENT_QUOTES, 'UTF-8') ?>/admin/page/delete/<?= $pagename ?>" style="float: right">&times;</a>
+	 <a href="<?= htmlspecialchars($site['base'], ENT_QUOTES, 'UTF-8') ?>/admin/page/edit/<?= $pagename ?>"><?= $pagetitleSafe ?></a>
+ </td>
+ </tr>
+ <?php endforeach; ?>
+ </tbody>
+ </table>
+ </div>
+ </div>
+ 

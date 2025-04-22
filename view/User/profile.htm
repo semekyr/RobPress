@@ -1,0 +1,73 @@
+<!-- <h2>Edit Profile</h2>
+<?php
+	$avatar = empty($u->avatar) ? '/img/avatar.png' : $u->avatar;
+?>
+<img class="avatar" style="float: right" src="<?=$site['base']?><?=$avatar?>"/>
+<h3><?=$u->username?></h3>
+
+<?php
+
+	$form = new Form();
+	echo $form->start(array('type' => 'file'));
+	echo $form->add('displayname',array('label' => 'Display Name'));
+	echo $form->add('password',array('type' => 'password', 'label' => 'Change Password','value' => ''));
+	echo $form->add('bio',array('type' => 'wysiwyg'));
+	echo $form->add('avatar',array('type' => 'file'));
+	if(!empty($u->avatar)) {
+		echo $form->add('reset',array('type' => 'checkbox','label' => 'Reset Avatar'));
+	}
+	echo $form->add('Update',array('type' => 'submit'));
+	echo $form->end();
+
+?>
+ -->
+
+ <h2>Edit Profile</h2>
+<?php
+    // Sanitize avatar URL and username
+    $avatar = empty($u->avatar) ? '/img/avatar.png' : h($u->avatar);
+    $username = h($u->username ?? '');
+    $base = h($site['base'] ?? '');
+?>
+<img class="avatar" style="float: right" src="<?= $base . $avatar ?>"/>
+<h3><?= $username ?></h3>
+
+<?php
+    $form = new Form();
+    echo $form->start(array('type' => 'file'));
+
+    // Sanitize and add display name
+    echo $form->add('displayname', array(
+        'label' => 'Display Name',
+        'value' => h($u->displayname ?? '')
+    ));
+
+    // Add password field
+    echo $form->add('password', array(
+        'type' => 'password',
+        'label' => 'Change Password',
+        'value' => ''
+    ));
+
+    // Sanitize and add bio field
+    echo $form->add('bio', array(
+        'type' => 'wysiwyg',
+        'value' => h($u->bio ?? '')
+    ));
+
+    // Add avatar file input
+    echo $form->add('avatar', array('type' => 'file'));
+
+    // Add reset avatar checkbox if avatar exists
+    if (!empty($u->avatar)) {
+        echo $form->add('reset', array(
+            'type' => 'checkbox',
+            'label' => 'Reset Avatar'
+        ));
+    }
+
+    // Add submit button
+    echo $form->add('Update', array('type' => 'submit'));
+    echo $form->end();
+?>
+

@@ -1,0 +1,91 @@
+<h2>All Comments</h2>
+<h3>Awaiting Moderation</h3>
+
+<?php if (sizeof($unmoderated) == 0): ?>
+    <p>No comments to moderate</p>
+<?php else: ?>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Author</th>
+                <th>Subject</th>
+                <th>Comment</th>
+                <th>In Response To</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($unmoderated as $comment): ?>
+                <tr>
+                    <td>
+                        <a href="<?= h($site['base']) ?>/user/view/<?= h($comment['Users']->id) ?>">
+                            <?= h($comment['Users']->username) ?>
+                        </a>
+                    </td>
+                    <td><?= h($comment['Comments']->subject) ?></td>
+                    <td style="font-size: 80%"><?= h($comment['Comments']->message) ?></td>
+                    <td>
+                        <a href="<?= h($site['base']) ?>/blog/view/<?= h($comment['Posts']->id) ?>">
+                            <?= h($comment['Posts']->title) ?>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-success" href="<?= h($site['base']) ?>/blog/moderate/<?= h($comment['Comments']->id) ?>/1">
+                            <i class="fa fa-check"></i>
+                        </a>
+                        <a class="btn btn-danger" href="<?= h($site['base']) ?>/blog/moderate/<?= h($comment['Comments']->id) ?>/0">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <a class="btn btn-default" href="<?= h($site['base']) ?>/admin/comment/edit/<?= h($comment['Comments']->id) ?>">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
+
+<h3>Approved Comments</h3>
+
+<?php if (sizeof($moderated) == 0): ?>
+    <p>No comments</p>
+<?php else: ?>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Author</th>
+                <th>Subject</th>
+                <th>Comment</th>
+                <th>In Response To</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($moderated as $comment): ?>
+                <tr>
+                    <td>
+                        <a href="<?= h($site['base']) ?>/user/view/<?= h($comment['Users']->id) ?>">
+                            <?= h($comment['Users']->username) ?>
+                        </a>
+                    </td>
+                    <td><?= h($comment['Comments']->subject) ?></td>
+                    <td style="font-size: 80%"><?= h($comment['Comments']->message) ?></td>
+                    <td>
+                        <a href="<?= h($site['base']) ?>/blog/view/<?= h($comment['Posts']->id) ?>">
+                            <?= h($comment['Posts']->title) ?>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="<?= h($site['base']) ?>/blog/moderate/<?= h($comment['Comments']->id) ?>/0">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <a class="btn btn-default" href="<?= h($site['base']) ?>/admin/comment/edit/<?= h($comment['Comments']->id) ?>">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>

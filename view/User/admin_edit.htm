@@ -1,0 +1,44 @@
+<h2>Edit User</h2>
+<h3><?= h($u->username ?? '') ?></h3>
+
+<?php
+    $form = new Form();
+    echo $form->start();
+
+    // Add sanitized username field
+    echo $form->add('username', array(
+        'label' => 'Username',
+        'value' => h($u->username ?? '')
+    ));
+
+    // Add sanitized display name field
+    echo $form->add('displayname', array(
+        'label' => 'Display Name',
+        'value' => h($u->displayname ?? '')
+    ));
+
+    // Add sanitized level select dropdown
+    echo $form->add('level', array(
+        'type' => 'select',
+        'items' => array(1 => 'Normal User', 2 => 'Administrator'),
+        'value' => h($u->level ?? '1') // Default to Normal User
+    ));
+
+    // Add sanitized bio field
+    echo $form->add('bio', array(
+        'type' => 'wysiwyg',
+        'value' => h($u->bio ?? '')
+    ));
+
+    // Add sanitized avatar field
+    echo $form->add('avatar', array(
+        'label' => 'Avatar URL',
+        'value' => h($u->avatar ?? '')
+    ));
+
+    // Add submit button
+    echo $form->add('Update', array('type' => 'submit'));
+
+    echo $form->end();
+?>
+

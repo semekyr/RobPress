@@ -1,0 +1,26 @@
+<h2>Blog Settings</h2>
+
+<?php
+    $form = new Form(); 
+    echo $form->start();
+?>
+
+<?php foreach ($settings as $setting): ?>
+    <?php
+        // Sanitize dynamic values using h()
+        $settingName = h($setting->setting ?? '');
+        $settingTitle = h($setting->title ?? '');
+        $settingValue = h($setting->value ?? '');
+
+        echo $form->add($settingName, array(
+            'label' => $settingTitle,
+            'type' => $setting->type,
+            'value' => $settingValue
+        ));
+    ?>
+<?php endforeach; ?>
+<hr/>
+<?php
+    echo $form->add('Save Settings', array('type' => 'submit'));
+    echo $form->end(); 
+?>
