@@ -2,6 +2,10 @@
 
 This document outlines a series of vulnerabilities discovered in a web application, along with the exact locations where they were found and the steps taken to remediate each issue. The vulnerabilities addressed include SQL injection, XSS, insecure uploads, parameter manipulation, and more. All fixes follow secure coding practices such as input sanitization, access control validation, file permission tightening, and secure session handling.
 
+## Note on Implementation Language:
+
+Although the web application contains some JavaScript files provided by our professor, all vulnerability fixes mentioned in this report were implemented in the PHP backend code. The vulnerable components (e.g., BlogController, AuthHelper, GenericModel) were part of the PHP logic, and all security improvements—such as prepared statements, parameterized queries, and input validation—were applied directly in the PHP files responsible for server-side operations.
+
 ---
 
 
