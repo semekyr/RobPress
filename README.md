@@ -48,7 +48,7 @@ The fetch function in the GenericModel class was vulnerable to SQL injection bec
 **What I found and where:**
 
 **Find #1:**  
--The server contained backup and temporary files such as .bak, .swp, .swo files, as well as files needed to maintain the infrastructure of the website such as .sql and .cfg files. These files exposed sensitive information, such as database credentials, page logic etc., which could be exploited by attackers to gain unauthorized access or valuable insights into the application. 
+- The server contained backup and temporary files such as .bak, .swp, .swo files, as well as files needed to maintain the infrastructure of the website such as .sql and .cfg files. These files exposed sensitive information, such as database credentials, page logic etc., which could be exploited by attackers to gain unauthorized access or valuable insights into the application. 
 
 
 **How I resolved it:**
