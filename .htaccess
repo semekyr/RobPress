@@ -1,0 +1,35 @@
+# Enable rewrite engine and route requests to framework
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI}::$1 ^(.*?/)(.*)::\2$
+RewriteRule ^(.*)$ - [E=BASE:%1]
+
+RewriteCond %{REQUEST_URI} \.ini$
+RewriteRule \.ini$ - [R=404]
+
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* %{ENV:BASE}/index.php [L,QSA]
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+
+<FilesMatch "uploads/.*\.(php|pl|py|cgi)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "uploads/.*\.(jpg|jpeg|png|gif|webp)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch "\.(htm|swo|phps|bak|swp|log|txt|htaccess|yaml|cfg|sql|json)$|^\.gitignore$|^VERSION$">
+    Require all denied
+</FilesMatch>
+
+<Files "security.php">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+

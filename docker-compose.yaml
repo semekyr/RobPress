@@ -1,0 +1,28 @@
+services:
+  db:
+    image: mariadb
+    volumes:
+      - ./install.sql:/docker-entrypoint-initdb.d/install.sql
+    environment:
+      MARIADB_ROOT_PASSWORD: WeLoveRob
+      MARIADB_DATABASE: team3203
+      MARIADB_USER: team3203
+      MARIADB_PASSWORD: 94b17e14
+
+  robpress:
+    build: .
+    image: robpress
+    ports:
+      - "3000:80"
+    container_name: robpress
+    volumes:
+      - ./:/var/www/html
+
+  pma:
+    image: phpmyadmin
+    ports:
+      - "4000:80"
+    container_name: pma
+    environment:
+      PMA_USER: root
+      PMA_PASSWORD: WeLoveRob
